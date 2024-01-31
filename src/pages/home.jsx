@@ -35,7 +35,7 @@ function Home() {
               );
             })}
           </S.Ul>
-          <Form />
+          <Form members={selectedMember} />
         </S.Body>
       </S.MainBox>
     </>

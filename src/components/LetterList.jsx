@@ -8,6 +8,10 @@ const LetterBox = styled.li`
   margin: 20px;
 `;
 
+const LetterContent = styled.text`
+  max-width: 100px;
+`;
+
 const LetterList = ({ letterItems }) => {
   return (
     <ul>
@@ -18,7 +22,10 @@ const LetterList = ({ letterItems }) => {
           </div>
           <div>
             <h3>{letter.nickname}</h3>
-            <p>{letter.content}</p>
+            <LetterContent>
+              {letter.content.slice(0, 50)}
+              {letter.content.length > 50 ? "..." : ""}
+            </LetterContent>
           </div>
         </LetterBox>
       ))}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import LetterList from "./LetterList";
 import { letterItems } from "letterItems";
@@ -36,17 +36,30 @@ const LetterContainer = styled.section`
   color: white;
 `;
 
-function Form() {
+function Form({ members }) {
+  const [nickname, setNickname] = useState("");
+  const [contents, setContents] = useState("");
+  const filteredLetter = members
+    ? letterItems.filter((letter) => letter.writedTo === members)
+    : letterItems;
   return (
     <>
       <InputForm>
         <InputSection>
           <InputLabel>닉네임 : </InputLabel>
-          <InputType type="text" />
+          <InputType
+            type="text"
+            maxLength={20}
+            placeholder="최대 20자까지만 작성할 수 있습니다."
+          />
         </InputSection>
         <InputSection>
           <InputLabel>내용 : </InputLabel>
-          <InputType type="text" />
+          <InputType
+            type="text"
+            maxLength={100}
+            placeholder="최대 100자까지만 작성할 수 있습니다."
+          />
         </InputSection>
         <InputSection>
           <InputLabel>보내고 싶은 멤버를 선택해주세요 </InputLabel>
@@ -58,9 +71,12 @@ function Form() {
             <option value="다니엘">다니엘</option>
           </select>
         </InputSection>
+        <InputSection>
+          <button>팬레터 등록하기</button>
+        </InputSection>
       </InputForm>
       <LetterContainer>
-        <LetterList letterItems={letterItems} />
+        <LetterList letterItems={filteredLetter} />
       </LetterContainer>
     </>
   );
