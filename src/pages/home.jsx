@@ -1,6 +1,7 @@
 import React from "react";
 import * as S from "../components/StyledHome";
 import { useState } from "react";
+import Form from "components/Form";
 
 function Home() {
   const [selectedMember, setSelectedMember] = useState(null);
@@ -34,26 +35,7 @@ function Home() {
               );
             })}
           </S.Ul>
-          <form>
-            <section>
-              <label>닉네임 : </label>
-              <input type="text" />
-            </section>
-            <section>
-              <label>내용 : </label>
-              <input type="text" />
-            </section>
-            <section>
-              <label>보내고 싶은 멤버를 선택해주세요 </label>
-              <select>
-                <option value="혜인">혜인</option>
-                <option value="하니">하니</option>
-                <option value="민지">민지</option>
-                <option value="해린">해린</option>
-                <option value="다니엘">다니엘</option>
-              </select>
-            </section>
-          </form>
+          <Form />
         </S.Body>
       </S.MainBox>
     </>
