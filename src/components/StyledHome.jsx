@@ -10,7 +10,7 @@ export const MainBox = styled.div`
 
 export const Header = styled.section`
   width: 100%;
-  height: 500px;
+  height: 600px;
   background-image: url(https://img.smlounge.co.kr/upload/NPFILE/202209/497994.jpg);
   background-size: cover;
   background-color: black;
@@ -31,10 +31,13 @@ export const Body = styled.section`
 export const Ul = styled.ul`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   padding: 25px;
   background-color: #008b8b61;
   border-radius: 12px;
+  width: 52%;
+  margin: auto;
+  flex-wrap: wrap;
 `;
 export const Li = styled.li`
   display: flex;
@@ -43,5 +46,12 @@ export const Li = styled.li`
   border: 1px solid gainsboro;
   border-radius: 15px;
   background-color: white;
+  width: 9%;
+  justify-content: center;
   cursor: pointer;
+
+  &:hover {
+    background-color: #4af9ff;
+    transition: 0.25s;
+  }
 `;
