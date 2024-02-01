@@ -11,9 +11,17 @@ const Detail = ({ letterAdd, setLetterAdd }) => {
     const confirmDelete = window.confirm("정말 삭제하시겠습니까?");
 
     if (confirmDelete) {
+      const deleteItemId = letter.id;
+
+      // letterAdd에서 해당 id를 가진 데이터를 제외하고 새로운 배열 생성
+      const updatedLetterAdd = letterAdd.filter(
+        (item) => item.id !== deleteItemId
+      );
+
+      setLetterAdd(updatedLetterAdd);
+
       alert("삭제되었습니다.");
       navigate("/");
-    } else {
     }
   };
 
