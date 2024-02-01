@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import LetterList from "./LetterList";
-import { letterItems } from "letterItems";
 import avatarImg from "avatar.jpg";
 import { v4 } from "uuid";
 
@@ -38,11 +37,10 @@ const LetterContainer = styled.section`
   color: white;
 `;
 
-function Form({ members }) {
+function Form({ members, letterAdd, setLetterAdd }) {
   const [nickname, setNickname] = useState("");
   const [content, setContents] = useState("");
   const [selectedMember, setSelectedMember] = useState("혜인");
-  const [letterAdd, setLetterAdd] = useState(letterItems);
 
   const filteredLetter = members
     ? letterAdd.filter((letter) => letter.writedTo === members)
@@ -129,7 +127,11 @@ function Form({ members }) {
         </InputSection>
       </InputForm>
       <LetterContainer>
-        <LetterList letterItems={filteredLetter} />
+        <LetterList
+          letterItem={filteredLetter}
+          letterAdd={letterAdd}
+          setLetterAdd={setLetterAdd}
+        />
       </LetterContainer>
     </>
   );

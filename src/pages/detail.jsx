@@ -1,17 +1,14 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const Detail = () => {
-  const { search } = useLocation();
+const Detail = ({ letterAdd, setLetterAdd }) => {
+  const { state } = useLocation();
+  console.log(state);
+  console.log(letterAdd);
   const navigate = useNavigate();
-  const params = new URLSearchParams(search);
-  const letterString = params.get("letter");
-  const letter = letterString && JSON.parse(letterString);
-
+  const letter = state;
   const handleDeleteBtn = () => {
     const confirmDelete = window.confirm("정말 삭제하시겠습니까?");
-    const removedCard = search.filter((card) => card.id !== id);
-    setTodoList(removedCard);
 
     if (confirmDelete) {
       alert("삭제되었습니다.");

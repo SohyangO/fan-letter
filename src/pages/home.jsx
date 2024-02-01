@@ -3,7 +3,7 @@ import * as S from "../components/StyledHome";
 import { useState } from "react";
 import Form from "components/Form";
 
-function Home() {
+function Home({ letterAdd, setLetterAdd }) {
   const [clickedMember, setClickedMember] = useState("");
 
   const memberList = ["혜인", "하니", "민지", "해린", "다니엘"];
@@ -35,7 +35,11 @@ function Home() {
               );
             })}
           </S.Ul>
-          <Form members={clickedMember} />
+          <Form
+            letterAdd={letterAdd}
+            setLetterAdd={setLetterAdd}
+            members={clickedMember}
+          />
         </S.Body>
       </S.MainBox>
     </>

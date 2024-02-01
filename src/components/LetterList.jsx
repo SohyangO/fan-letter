@@ -18,17 +18,16 @@ const AvatarImage = styled.img`
   width: 100px;
 `;
 
-const LetterList = ({ letterItems }) => {
+const LetterList = ({ letterItem }) => {
   const navigate = useNavigate();
+  const handleLetterClick = (letter) => {
+    navigate(`/detail/${letter.id}`, { state: letter });
+  };
+
   return (
     <ul>
-      {letterItems.map((letter) => (
-        <LetterBox
-          key={letter.id}
-          onClick={() =>
-            navigate(`/detail/${letter.id}?letter=${JSON.stringify(letter)}`)
-          }
-        >
+      {letterItem.map((letter) => (
+        <LetterBox key={letter.id} onClick={() => handleLetterClick(letter)}>
           <div>
             <AvatarImage src={letter.avatar}></AvatarImage>
           </div>
