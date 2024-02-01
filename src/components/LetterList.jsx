@@ -25,7 +25,9 @@ const LetterList = ({ letterItems }) => {
       {letterItems.map((letter) => (
         <LetterBox
           key={letter.id}
-          onClick={() => navigate(`/detail/${letter.id}`)}
+          onClick={() =>
+            navigate(`/detail/${letter.id}?letter=${JSON.stringify(letter)}`)
+          }
         >
           <div>
             <AvatarImage src={letter.avatar}></AvatarImage>
@@ -33,6 +35,7 @@ const LetterList = ({ letterItems }) => {
           <div>
             <h3>{letter.nickname}</h3>
             <LetterContent>
+              {letter.createdAt}
               {letter.content.slice(0, 50)}
               {letter.content.length > 50 ? "..." : ""}
             </LetterContent>

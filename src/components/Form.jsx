@@ -78,7 +78,7 @@ function Form({ members }) {
       avatar: avatarImg,
       content,
       writedTo: selectedMember,
-      id: v4,
+      id: v4(),
     };
     console.log(newLetter);
     console.log(letterAdd);
