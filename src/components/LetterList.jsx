@@ -12,13 +12,17 @@ const LetterContent = styled.text`
   max-width: 100px;
 `;
 
+const AvatarImage = styled.img`
+  width: 100px;
+`;
+
 const LetterList = ({ letterItems }) => {
   return (
     <ul>
       {letterItems.map((letter) => (
         <LetterBox key={letter.id}>
           <div>
-            <img src={letter.avatar}></img>
+            <AvatarImage src={letter.avatar}></AvatarImage>
           </div>
           <div>
             <h3>{letter.nickname}</h3>

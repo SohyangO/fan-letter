@@ -4,11 +4,11 @@ import { useState } from "react";
 import Form from "components/Form";
 
 function Home() {
-  const [selectedMember, setSelectedMember] = useState(null);
+  const [clickedMember, setClickedMember] = useState("");
 
   const memberList = ["혜인", "하니", "민지", "해린", "다니엘"];
-  const onHandleSelectedMember = (member) => {
-    setSelectedMember(member);
+  const onHandleClickedMember = (member) => {
+    setClickedMember(member);
   };
 
   return (
@@ -24,10 +24,10 @@ function Home() {
               return (
                 <S.Li
                   key={member}
-                  onClick={() => onHandleSelectedMember(member)}
+                  onClick={() => onHandleClickedMember(member)}
                   style={{
                     backgroundColor:
-                      selectedMember === member ? "#4af9ff" : "white",
+                      clickedMember === member ? "#4af9ff" : "white",
                   }}
                 >
                   {member}
@@ -35,7 +35,7 @@ function Home() {
               );
             })}
           </S.Ul>
-          <Form members={selectedMember} />
+          <Form members={clickedMember} />
         </S.Body>
       </S.MainBox>
     </>
