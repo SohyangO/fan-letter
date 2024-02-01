@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const LetterBox = styled.li`
   border: 1px solid whitesmoke;
   padding: 20px;
   border-radius: 10px;
   margin: 20px;
+  cursor: pointer;
 `;
 
 const LetterContent = styled.text`
@@ -17,10 +19,14 @@ const AvatarImage = styled.img`
 `;
 
 const LetterList = ({ letterItems }) => {
+  const navigate = useNavigate();
   return (
     <ul>
       {letterItems.map((letter) => (
-        <LetterBox key={letter.id}>
+        <LetterBox
+          key={letter.id}
+          onClick={() => navigate(`/detail/${letter.id}`)}
+        >
           <div>
             <AvatarImage src={letter.avatar}></AvatarImage>
           </div>
