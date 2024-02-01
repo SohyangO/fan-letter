@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LetterList from "components/LetterList";
 import Home from "pages/home";
 import Detail from "pages/detail";
 import { useState } from "react";
