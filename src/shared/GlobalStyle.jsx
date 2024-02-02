@@ -1,3 +1,9 @@
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+body{
+    box-sizing:border-box;
+}
 html,
 body,
 div,
@@ -122,3 +128,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+`;
+
+export default GlobalStyle;

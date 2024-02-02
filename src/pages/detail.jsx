@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { LetterContext } from "shared/context";
 
-const Detail = ({ letterAdd, setLetterAdd }) => {
+const Detail = () => {
+  const { letterAdd, setLetterAdd } = useContext(LetterContext);
   const { state } = useLocation();
   const navigate = useNavigate();
   const letter = state;
@@ -35,20 +37,20 @@ const Detail = ({ letterAdd, setLetterAdd }) => {
       if (editedContent === letter.content) {
         alert("아무런 수정사항이 없습니다.");
         return;
-      } else {
-        const confirmSave = window.confirm("정말 수정하시겠습니까?");
-        if (confirmSave) {
-          setLetterAdd((prev) =>
-            prev.map((item) =>
-              item.id === letter.id ? { ...item, content: editedContent } : item
-            )
-          );
-          alert("수정이 완료되었습니다.");
-          SetEdited(false);
-          navigate("/");
-        }
+      }
+      const confirmSave = window.confirm("정말 수정하시겠습니까?");
+      if (confirmSave) {
+        setLetterAdd((prev) =>
+          prev.map((item) =>
+            item.id === letter.id ? { ...item, content: editedContent } : item
+          )
+        );
+        alert("수정이 완료되었습니다.");
+
+        navigate("/");
       }
     }
+    SetEdited(false);
   };
 
   return (

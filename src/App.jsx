@@ -1,13 +1,13 @@
 import Router from "shared/Router";
-import "./reset.css";
-import GlobalStyle from "GlobalStyle";
+import GlobalStyle from "shared/GlobalStyle";
+import LetterProvider from "shared/context";
 
 function App() {
   return (
-    <>
+    <LetterProvider>
       <Router />
       <GlobalStyle />
-    </>
+    </LetterProvider>
   );
 }
 

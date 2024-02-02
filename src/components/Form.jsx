@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import LetterList from "./LetterList";
 import avatarImg from "avatar.jpg";
 import { v4 } from "uuid";
+import { LetterContext } from "shared/context";
 
-function Form({ members, letterAdd, setLetterAdd }) {
+function Form({ members }) {
+  const { letterAdd, setLetterAdd } = useContext(LetterContext);
   const [nickname, setNickname] = useState("");
   const [content, setContents] = useState("");
   const [selectedMember, setSelectedMember] = useState("혜인");
@@ -94,11 +96,7 @@ function Form({ members, letterAdd, setLetterAdd }) {
         </InputSection>
       </InputForm>
       <LetterContainer>
-        <LetterList
-          letterItem={filteredLetter}
-          letterAdd={letterAdd}
-          setLetterAdd={setLetterAdd}
-        />
+        <LetterList letterItem={filteredLetter} />
       </LetterContainer>
     </>
   );
