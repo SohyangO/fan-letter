@@ -4,39 +4,6 @@ import LetterList from "./LetterList";
 import avatarImg from "avatar.jpg";
 import { v4 } from "uuid";
 
-const InputForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 52%;
-  background-color: dimgray;
-  margin: 20px auto;
-  border-radius: 15px;
-  padding: 25px;
-`;
-
-const InputSection = styled.section`
-  margin-bottom: 10px;
-  display: flex;
-`;
-
-const InputLabel = styled.label`
-  width: 100px;
-  display: flex;
-  align-items: center;
-`;
-
-const InputType = styled.input`
-  width: 100%;
-`;
-
-const LetterContainer = styled.section`
-  width: 52%;
-  margin: auto;
-  padding: 25px;
-  background-color: black;
-  color: white;
-`;
-
 function Form({ members, letterAdd, setLetterAdd }) {
   const [nickname, setNickname] = useState("");
   const [content, setContents] = useState("");
@@ -137,4 +104,36 @@ function Form({ members, letterAdd, setLetterAdd }) {
   );
 }
 
+const InputForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 52%;
+  background-color: dimgray;
+  margin: 20px auto;
+  border-radius: 15px;
+  padding: 25px;
+`;
+
+const InputSection = styled.section`
+  margin-bottom: 10px;
+  display: flex;
+`;
+
+const InputLabel = styled.label`
+  width: 100px;
+  display: flex;
+  align-items: center;
+`;
+
+const InputType = styled.input`
+  width: 100%;
+`;
+
+const LetterContainer = styled.section`
+  width: 52%;
+  margin: auto;
+  padding: 25px;
+  background-color: black;
+  color: white;
+`;
 export default Form;

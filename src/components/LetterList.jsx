@@ -2,22 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const LetterBox = styled.li`
-  border: 1px solid whitesmoke;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 20px;
-  cursor: pointer;
-`;
-
-const LetterContent = styled.text`
-  max-width: 100px;
-`;
-
-const AvatarImage = styled.img`
-  width: 100px;
-`;
-
 const LetterList = ({ letterItem }) => {
   const navigate = useNavigate();
   const handleLetterClick = (letter) => {
@@ -44,5 +28,21 @@ const LetterList = ({ letterItem }) => {
     </ul>
   );
 };
+
+const LetterBox = styled.li`
+  border: 1px solid whitesmoke;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+  cursor: pointer;
+`;
+
+const LetterContent = styled.text`
+  max-width: 100px;
+`;
+
+const AvatarImage = styled.img`
+  width: 100px;
+`;
 
 export default LetterList;
