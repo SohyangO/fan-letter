@@ -1,15 +1,20 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import LetterList from "./LetterList";
 import avatarImg from "avatar.jpg";
 import { v4 } from "uuid";
-import { LetterContext } from "shared/context";
+// import { LetterContext } from "shared/context";
+import { useDispatch, useSelector } from "react-redux";
+import { addLetter } from "modules/LetterReducer";
 
 function Form({ members }) {
-  const { letterAdd, setLetterAdd } = useContext(LetterContext);
+  // const { letterAdd, setLetterAdd } = useContext(LetterContext);
+  const dispatch = useDispatch();
   const [nickname, setNickname] = useState("");
   const [content, setContents] = useState("");
   const [selectedMember, setSelectedMember] = useState("혜인");
+
+  const letterAdd = useSelector((state) => state.letterCollect.letterAdd);
 
   const filteredLetter = members
     ? letterAdd.filter((letter) => letter.writedTo === members)
@@ -53,7 +58,8 @@ function Form({ members }) {
     setNickname("");
     setContents("");
 
-    return setLetterAdd([...letterAdd, newLetter]);
+    // return setLetterAdd([...letterAdd, newLetter]);
+    dispatch(addLetter(newLetter));
   };
 
   return (
@@ -82,9 +88,7 @@ function Form({ members }) {
         <InputSection>
           <InputLabel>보내고 싶은 멤버를 선택해주세요 </InputLabel>
           <select value={selectedMember} onChange={changeMember}>
-            <option value="혜인" selected>
-              혜인
-            </option>
+            <option value="혜인">혜인</option>
             <option value="하니">하니</option>
             <option value="민지">민지</option>
             <option value="해린">해린</option>
@@ -96,7 +100,7 @@ function Form({ members }) {
         </InputSection>
       </InputForm>
       <LetterContainer>
-        <LetterList letterItem={filteredLetter} />
+        <LetterList letterCard={filteredLetter} />
       </LetterContainer>
     </>
   );

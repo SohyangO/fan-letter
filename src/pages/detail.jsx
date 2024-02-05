@@ -1,23 +1,26 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { LetterContext } from "shared/context";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteLetter, updateLetter } from "modules/LetterReducer";
+// import { LetterContext } from "shared/context";
+
+const EditButton = ({ onClick }) => <button onClick={onClick}>수정</button>;
+
+const SaveButton = ({ onClick }) => <button onClick={onClick}>수정완료</button>;
 
 const Detail = () => {
-  const { letterAdd, setLetterAdd } = useContext(LetterContext);
+  // const { letterAdd, setLetterAdd } = useContext(LetterContext);
+  const dispatch = useDispatch();
   const { state } = useLocation();
   const navigate = useNavigate();
   const letter = state;
+  const letterAdd = useSelector((state) => state.letterCollect.letterAdd);
 
   const handleDeleteBtn = () => {
     const confirmDelete = window.confirm("정말 삭제하시겠습니까?");
 
     if (confirmDelete) {
-      // letterAdd에서 해당 id를 가진 데이터를 제외하고 새로운 배열 생성
-      const updatedLetterAdd = letterAdd.filter(
-        (item) => item.id !== letter.id
-      );
-
-      setLetterAdd(updatedLetterAdd);
+      dispatch(deleteLetter(letter.id));
 
       alert("삭제되었습니다.");
       navigate("/");
@@ -33,22 +36,16 @@ const Detail = () => {
 
   const handleSaveEdit = () => {
     SetEdited(true);
-    if (edited) {
-      if (editedContent === letter.content) {
-        alert("아무런 수정사항이 없습니다.");
-        return;
-      }
-      const confirmSave = window.confirm("정말 수정하시겠습니까?");
-      if (confirmSave) {
-        setLetterAdd((prev) =>
-          prev.map((item) =>
-            item.id === letter.id ? { ...item, content: editedContent } : item
-          )
-        );
-        alert("수정이 완료되었습니다.");
+    if (editedContent === letter.content) {
+      alert("아무런 수정사항이 없습니다.");
+      return;
+    }
+    const confirmSave = window.confirm("정말 수정하시겠습니까?");
+    if (confirmSave) {
+      dispatch(updateLetter(letterAdd.id, editedContent));
+      alert("수정이 완료되었습니다.");
 
-        navigate("/");
-      }
+      navigate("/");
     }
     SetEdited(false);
   };
@@ -75,10 +72,11 @@ const Detail = () => {
             <p></p>
           </section>
           <section>
-            <button onClick={() => handleSaveEdit()}>
-              {edited ? "수정완료" : "수정"}
-            </button>
-
+            {edited ? (
+              <SaveButton onClick={handleSaveEdit} />
+            ) : (
+              <EditButton onClick={() => SetEdited(true)} />
+            )}
             <button onClick={() => handleDeleteBtn(letter)}>삭제</button>
           </section>
         </div>

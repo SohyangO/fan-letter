@@ -2,15 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
-const LetterList = ({ letterItem }) => {
+const LetterList = ({ letterCard }) => {
   const navigate = useNavigate();
+  const letters = Array.isArray(letterCard) ? letterCard : [];
+
   const handleLetterClick = (letter) => {
     navigate(`/detail/${letter.id}`, { state: letter });
   };
 
   return (
     <ul>
-      {letterItem.map((letter) => (
+      {letters.map((letter) => (
         <LetterBox key={letter.id} onClick={() => handleLetterClick(letter)}>
           <div>
             <AvatarImage src={letter.avatar}></AvatarImage>
