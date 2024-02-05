@@ -33,7 +33,7 @@ export const Ul = styled.ul`
   flex-direction: row;
   justify-content: space-between;
   padding: 25px;
-  background-color: #008b8b61;
+  background-color: #54e3e361;
   border-radius: 12px;
   width: 52%;
   margin: auto;
@@ -51,7 +51,7 @@ export const Li = styled.li`
   cursor: pointer;
 
   &:hover {
-    background-color: #4af9ff;
+    background-color: #04dddd4d;
     transition: 0.25s;
   }
 `;

@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 const LetterList = ({ letterCard }) => {
   const navigate = useNavigate();
-  const letters = Array.isArray(letterCard) ? letterCard : [];
 
   const handleLetterClick = (letter) => {
     navigate(`/detail/${letter.id}`, { state: letter });
@@ -12,21 +11,25 @@ const LetterList = ({ letterCard }) => {
 
   return (
     <ul>
-      {letters.map((letter) => (
-        <LetterBox key={letter.id} onClick={() => handleLetterClick(letter)}>
-          <div>
-            <AvatarImage src={letter.avatar}></AvatarImage>
-          </div>
-          <div>
-            <h3>{letter.nickname}</h3>
-            <LetterContent>
-              {letter.createdAt}
-              {letter.content.slice(0, 50)}
-              {letter.content.length > 50 ? "..." : ""}
-            </LetterContent>
-          </div>
-        </LetterBox>
-      ))}
+      {letterCard.length === 0 ? (
+        <p>팬레터를 남겨주세요!</p>
+      ) : (
+        letterCard.map((letter) => (
+          <LetterBox key={letter.id} onClick={() => handleLetterClick(letter)}>
+            <div>
+              <AvatarImage src={letter.avatar}></AvatarImage>
+            </div>
+            <div>
+              <h3>{letter.nickname}</h3>
+              <LetterContent>
+                {letter.createdAt}
+                {letter.content.slice(0, 50)}
+                {letter.content.length > 50 ? "..." : ""}
+              </LetterContent>
+            </div>
+          </LetterBox>
+        ))
+      )}
     </ul>
   );
 };
@@ -45,6 +48,9 @@ const LetterContent = styled.text`
 
 const AvatarImage = styled.img`
   width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  object-fit: cover;
 `;
 
 export default LetterList;

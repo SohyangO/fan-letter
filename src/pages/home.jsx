@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "../components/StyledHome";
 import { useState } from "react";
-import Form from "components/Form";
+import AddForm from "components/AddForm";
 
 function Home() {
   const [clickedMember, setClickedMember] = useState("");
@@ -13,7 +13,6 @@ function Home() {
 
   return (
     <>
-      <S.NavBox>home</S.NavBox>
       <S.MainBox id="MainBox">
         <S.Header>
           <S.Title>NewJeans Fanletter Collection</S.Title>
@@ -27,7 +26,7 @@ function Home() {
                   onClick={() => onHandleClickedMember(member)}
                   style={{
                     backgroundColor:
-                      clickedMember === member ? "#4af9ff" : "white",
+                      clickedMember === member ? "#daf7dc" : "white",
                   }}
                 >
                   {member}
@@ -35,7 +34,7 @@ function Home() {
               );
             })}
           </S.Ul>
-          <Form members={clickedMember} />
+          <AddForm members={clickedMember} />
         </S.Body>
       </S.MainBox>
     </>

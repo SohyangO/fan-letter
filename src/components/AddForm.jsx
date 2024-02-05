@@ -3,12 +3,10 @@ import styled from "styled-components";
 import LetterList from "./LetterList";
 import avatarImg from "avatar.jpg";
 import { v4 } from "uuid";
-// import { LetterContext } from "shared/context";
 import { useDispatch, useSelector } from "react-redux";
 import { addLetter } from "modules/LetterReducer";
 
 function Form({ members }) {
-  // const { letterAdd, setLetterAdd } = useContext(LetterContext);
   const dispatch = useDispatch();
   const [nickname, setNickname] = useState("");
   const [content, setContents] = useState("");
@@ -58,7 +56,6 @@ function Form({ members }) {
     setNickname("");
     setContents("");
 
-    // return setLetterAdd([...letterAdd, newLetter]);
     dispatch(addLetter(newLetter));
   };
 
@@ -77,7 +74,7 @@ function Form({ members }) {
         </InputSection>
         <InputSection>
           <InputLabel>내용 : </InputLabel>
-          <InputType
+          <InputContent
             type="text"
             maxLength={100}
             placeholder="최대 100자까지만 작성할 수 있습니다."
@@ -86,7 +83,7 @@ function Form({ members }) {
           />
         </InputSection>
         <InputSection>
-          <InputLabel>보내고 싶은 멤버를 선택해주세요 </InputLabel>
+          <MemberSelect>보내고 싶은 멤버를 선택해주세요 </MemberSelect>
           <select value={selectedMember} onChange={changeMember}>
             <option value="혜인">혜인</option>
             <option value="하니">하니</option>
@@ -109,11 +106,11 @@ function Form({ members }) {
 const InputForm = styled.form`
   display: flex;
   flex-direction: column;
-  width: 52%;
-  background-color: dimgray;
+  width: 40%;
+  background-color: #acdfff;
   margin: 20px auto;
   border-radius: 15px;
-  padding: 25px;
+  padding: 25px 100px;
 `;
 
 const InputSection = styled.section`
@@ -128,14 +125,30 @@ const InputLabel = styled.label`
 `;
 
 const InputType = styled.input`
-  width: 100%;
+  width: 55%;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  height: 40px;
+`;
+
+const InputContent = styled.input`
+  width: 55%;
+  height: 150px;
+  border-radius: 7px;
+  border: 1px solid transparent;
+`;
+
+const MemberSelect = styled.label`
+  width: 250px;
+  margin-right: 10px;
 `;
 
 const LetterContainer = styled.section`
   width: 52%;
   margin: auto;
   padding: 25px;
-  background-color: black;
-  color: white;
+  background-color: #5abfff;
+  color: black;
+  border-radius: 10px;
 `;
 export default Form;
