@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteLetter, updateLetter } from "modules/LetterReducer";
 
 const EditButton = ({ onClick }) => <button onClick={onClick}>수정</button>;
@@ -12,14 +12,12 @@ const Detail = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
   const letter = state;
-  const letterAdd = useSelector((state) => state.letterCollect.letterAdd);
 
   const handleDeleteBtn = () => {
     const confirmDelete = window.confirm("정말 삭제하시겠습니까?");
 
     if (confirmDelete) {
       dispatch(deleteLetter(letter.id));
-
       alert("삭제되었습니다.");
       navigate("/");
     }
@@ -39,13 +37,12 @@ const Detail = () => {
       return;
     }
     const confirmSave = window.confirm("정말 수정하시겠습니까?");
+    SetEdited(false);
     if (confirmSave) {
       dispatch(updateLetter(letter.id, editedContent));
       alert("수정이 완료되었습니다.");
-
       navigate("/");
     }
-    SetEdited(false);
   };
 
   return (
